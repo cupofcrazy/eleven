@@ -96,22 +96,22 @@ export const getPostsByUserId = async (userId: string) => {
   return userPosts
 }
 
-export const getUserBoardWithPostStatus = async (postId: string) => {
-  const session = await auth()
-  if (!session?.user?.id) {
-    throw new Error("User not logged in")
-  }
-  const userBoards = await db.select({
-    id: boards.id,
-    name: boards.name,
-    description: boards.description,
-    hasPost: db
-      .select({exists: true })
-      .from(boardPosts)
-      .where(and(eq(boardPosts.boardId, boards.id), eq(boardPosts.postId, postId)))
-      .limit(1)
-      .$exists()
-  })
-  .from(boards)
-  .where(eq(boards.userId, session.user.id))
-}
+// export const getUserBoardWithPostStatus = async (postId: string) => {
+//   const session = await auth()
+//   if (!session?.user?.id) {
+//     throw new Error("User not logged in")
+//   }
+//   const userBoards = await db.select({
+//     id: boards.id,
+//     name: boards.name,
+//     description: boards.description,
+//     hasPost: db
+//       .select({exists: true })
+//       .from(boardPosts)
+//       .where(and(eq(boardPosts.boardId, boards.id), eq(boardPosts.postId, postId)))
+//       .limit(1)
+//       .$exists()
+//   })
+//   .from(boards)
+//   .where(eq(boards.userId, session.user.id))
+// }
