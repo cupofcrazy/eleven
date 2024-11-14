@@ -7,7 +7,7 @@ export async function SignOut() {
       "use server"
       await signOut()
     }}>
-      <button type="submit">Sign Out</button>
+      <button className="text-neutral-400 hover:text-neutral-700 transition-colors" type="submit">Sign Out</button>
     </form>
   )
 }

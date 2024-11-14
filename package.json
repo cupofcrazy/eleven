@@ -14,14 +14,26 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.4.2",
+    "@hookform/resolvers": "^3.9.0",
     "@libsql/client": "^0.10.0",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-popover": "^1.1.1",
+    "@radix-ui/react-select": "^2.1.1",
+    "classnames": "^2.5.1",
+    "cloudinary": "^2.5.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
+    "drizzle-zod": "^0.5.1",
     "framer-motion": "^11.3.31",
+    "lucide-react": "^0.441.0",
     "next": "14.2.7",
     "next-auth": "^5.0.0-beta.20",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
+    "react-responsive-masonry": "^2.3.0",
+    "sonner": "^1.5.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

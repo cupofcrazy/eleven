@@ -27,6 +27,48 @@ CREATE TABLE `authenticator` (
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
+CREATE TABLE `board_post` (
+	`boardId` text NOT NULL,
+	`postId` text NOT NULL,
+	`addedAt` integer NOT NULL,
+	FOREIGN KEY (`boardId`) REFERENCES `board`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`postId`) REFERENCES `post`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE TABLE `board` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`description` text,
+	`createdAt` integer NOT NULL,
+	`userId` text NOT NULL,
+	`isPublic` integer NOT NULL,
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE TABLE `favorite` (
+	`id` text PRIMARY KEY NOT NULL,
+	`userId` text NOT NULL,
+	`postId` text NOT NULL,
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`postId`) REFERENCES `post`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE TABLE `post` (
+	`id` text PRIMARY KEY NOT NULL,
+	`caption` text,
+	`url` text NOT NULL,
+	`width` integer,
+	`height` integer,
+	`format` text,
+	`size` integer,
+	`asset_id` text,
+	`createdAt` integer NOT NULL,
+	`boardId` text,
+	`userId` text NOT NULL,
+	FOREIGN KEY (`boardId`) REFERENCES `board`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
 CREATE TABLE `session` (
 	`sessionToken` text PRIMARY KEY NOT NULL,
 	`userId` text NOT NULL,
@@ -37,6 +79,7 @@ CREATE TABLE `session` (
 CREATE TABLE `user` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text,
+	`username` text,
 	`email` text,
 	`emailVerified` integer,
 	`image` text
@@ -50,4 +93,5 @@ CREATE TABLE `verificationToken` (
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `authenticator_credentialID_unique` ON `authenticator` (`credentialID`);--> statement-breakpoint
+CREATE UNIQUE INDEX `user_username_unique` ON `user` (`username`);--> statement-breakpoint
 CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);

@@ -1,14 +1,14 @@
-import { signIn } from "@/auth"
+import { signIn } from "@/actions/auth"
  
 export async function SignIn() {
   return (
     <form
       action={async () => {
         "use server"
-        await signIn("google")
+        await signIn()
       }}
     >
-      <button className="bg-blue-500 text-white font-medium px-4 py-2 rounded-full hover:bg-blue-600 transition-colors" type="submit">Signin with Google</button>
+      <button className="text-neutral-400 hover:text-neutral-700 transition-colors" type="submit">Log in / Sign up</button>
     </form>
   )
 } 
